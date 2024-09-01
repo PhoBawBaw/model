@@ -22,8 +22,9 @@
 |dk|Don’t know|58|
 
 ## 모델 학습 환경
-* Google Colab
+* Jupyter notebook
 
 ## 모델 학습 및 추론
-1. google colab 환경에서 데이터 셋을 구축 후 모든 셀 실행.
+0. ```pip install -r requirements.txt```
+1. jupyter notebook 환경에서 데이터 셋을 구축 후 모든 셀 실행.
 2. ```python inference.py```
