@@ -23,8 +23,27 @@
 
 ## 모델 학습 환경
 * Jupyter notebook
+* vscode
+
+## 프로젝트 구조
+```
+project_root/
+├─dataset
+│  ├─Belly_pain
+│  ├─Cold_hot
+│  ├─Discomfort
+│  ├─Don’t_know
+│  ├─Hungry
+│  ├─Lonely
+│  ├─Needs_to_burp
+│  ├─Scared
+│  └─Tired
+├─model
+├─mp4_folder
+└─query_set
+```
 
 ## 모델 학습 및 추론
 0. ```pip install -r requirements.txt```
 1. jupyter notebook 환경에서 데이터 셋을 구축 후 모든 셀 실행.
-2. ```python inference.py```
+2. vscode 환경에서 ```python inference.py```
