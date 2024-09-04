@@ -16,7 +16,7 @@ def extract_audio_from_video(video_file_path, audio_file_path): ## mp4를 wav로
     # 오디오를 추출하여 mp3 파일로 저장
     video.audio.write_audiofile(audio_file_path, codec='pcm_s16le')
 
-def predict_audio_class(model, file_path):
+def predict_audio_class(model, file_path, label_map):
     # 오디오 파일 로드
     waveform, sample_rate = torchaudio.load(file_path)
 
@@ -31,5 +31,6 @@ def predict_audio_class(model, file_path):
         _, predicted = torch.max(outputs, 1)
 
     # 예측된 클래스 반환
+    print(predicted)
     predicted_class = label_map[predicted.item()]
     return predicted_class
