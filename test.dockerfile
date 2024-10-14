@@ -21,4 +21,4 @@ ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # 컨테이너 실행 시 가상환경의 Python 사용하여 inference.py 실행
-CMD ["./venv/bin/python", "inference.py"]
+CMD ["./venv/bin/python", "api.py"]
