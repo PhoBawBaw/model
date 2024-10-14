@@ -31,6 +31,5 @@ def predict_audio_class(model, file_path, label_map):
         _, predicted = torch.max(outputs, 1)
 
     # 예측된 클래스 반환
-    print(predicted)
     predicted_class = label_map[predicted.item()]
     return predicted_class

@@ -1,0 +1,16 @@
+폴더 PATH의 목록입니다.
+볼륨 일련 번호는 4EB9-DD01입니다.
+project_root/
+├─dataset
+│  ├─Belly_pain
+│  ├─Cold_hot
+│  ├─Discomfort
+│  ├─Don’t_know
+│  ├─Hungry
+│  ├─Lonely
+│  ├─Needs_to_burp
+│  ├─Scared
+│  └─Tired
+├─model
+├─mp4_folder
+└─query_set
