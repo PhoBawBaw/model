@@ -4,11 +4,17 @@ import uvicorn
 import os
 import asyncpg
 from datetime import datetime
-from model import CNNClassifier
+from model import CRNNAttentionClassifier
 from utils import predict_audio_class
 import torch
 
 app = FastAPI()
+
+best_model_path = './model/model_attention.pth'
+num_classes = 9
+model = CRNNAttentionClassifier(num_classes=num_classes)
+model.load_state_dict(torch.load(best_model_path))
+model.eval()
 
 
 @app.post("/upload-wav/")
@@ -30,8 +36,8 @@ async def upload_wav(file: UploadFile = File(...)):
 
 async def save_to_db(label: str):
     conn = await asyncpg.connect(
-        host="0.0.0.0",
-        port=5432,
+        host="",
+        port="",
         user="",
         password="",
         database="db"
@@ -47,14 +53,4 @@ async def save_to_db(label: str):
 
 
 if __name__ == "__main__":
-    best_model_path = './model/model_1.pth'
-    label_map = {0: 'Belly_pain', 1: 'Cold_hot', 2: 'Discomfort', 3: 'Don’t_know', 4: 'Hungry', 5: 'Lonely',
-                 6: 'Needs_to_burp', 7: 'Scared', 8: 'Tired'}
-
-    input_shape = (1, 8000)
-    num_label = len(label_map)
-    model = CNNClassifier(input_shape, num_label)
-    model.load_state_dict(torch.load(best_model_path))
-    model.eval()
-
     uvicorn.run(app, host="0.0.0.0", port=1213)
