@@ -36,8 +36,7 @@ def predict_audio_class(model, file_path):
         outputs = model(mel_spec)
         _, predicted_label = torch.max(outputs, 1)
 
-    label_map = {0: 'Belly_pain', 1: 'Cold_hot', 2: 'Discomfort', 3: 'Don’t_know', 4: 'Hungry', 5: 'Lonely',
-                 6: 'Needs_to_burp', 7: 'Scared', 8: 'Tired'}
+    label_map = {0: 'Belly_pain', 1: 'burping', 2: 'discomfort', 3: "don't_know", 4: 'hungry', 5: 'tired'}
 
     predicted_class = label_map[predicted_label.item()]
     return predicted_class

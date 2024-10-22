@@ -10,8 +10,8 @@ import torch
 
 app = FastAPI()
 
-best_model_path = './model/model_attention.pth'
-num_classes = 9
+best_model_path = './model/model_revision.pth'
+num_classes = 6
 model = CRNNAttentionClassifier(num_classes=num_classes)
 model.load_state_dict(torch.load(best_model_path))
 model.eval()

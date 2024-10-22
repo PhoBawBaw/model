@@ -91,8 +91,7 @@ class SeqSelfAttention(nn.Module):
 
         if self.attention_type == 'multiplicative':
             attention_scores = torch.matmul(lstm_out, self.attention_weights)
-            attention_scores = torch.matmul(attention_scores,
-                                            lstm_out.transpose(1, 2))
+            attention_scores = torch.matmul(attention_scores, lstm_out.transpose(1, 2))
             attention_scores = self.tanh(attention_scores)
             attention_weights = F.softmax(attention_scores, dim=-1)
 
@@ -165,8 +164,7 @@ class CRNNAttentionClassifier(nn.Module):
 
 def main():
     data_dir = './dataset/'
-    dataset = AudioFolderDataset(root_dir=data_dir, target_sample_rate=8000,
-                                 target_length=56000)
+    dataset = AudioFolderDataset(root_dir=data_dir, target_sample_rate=8000, target_length=56000)
 
     seed = 42
     torch.manual_seed(seed)
@@ -180,7 +178,7 @@ def main():
     val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False)
     test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
 
-    num_classes = 9
+    num_classes = 6
     model = CRNNAttentionClassifier(num_classes=num_classes)
 
     criterion = nn.CrossEntropyLoss()
@@ -188,7 +186,7 @@ def main():
 
     num_epochs = 150
     best_val_accuracy = 0.0
-    best_model_path = './model/model_attention.pth'
+    best_model_path = './model/model_final.pth'
 
     for epoch in range(num_epochs):
         model.train()
@@ -225,9 +223,9 @@ def main():
             torch.save(model.state_dict(), best_model_path)
             print(f'Saved Best Model with Accuracy: {val_accuracy}')
 
-    best_model_path = './model/model_attention.pth'
+    best_model_path = './model/model_revison.pth'
 
-    num_classes = 9
+    num_classes = 6
     model = CRNNAttentionClassifier(num_classes=num_classes)
 
     model.load_state_dict(torch.load(best_model_path))
