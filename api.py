@@ -7,6 +7,7 @@ from datetime import datetime
 from model import CRNNAttentionClassifier
 from utils import predict_audio_class
 import torch
+import subprocess
 
 app = FastAPI()
 
@@ -40,7 +41,7 @@ async def save_to_db(label: str):
         port="",
         user="",
         password="",
-        database="db"
+        database=""
     )
 
     timestamp = datetime.now()
@@ -50,6 +51,24 @@ async def save_to_db(label: str):
     ''', timestamp, label)
 
     await conn.close()
+
+
+@app.post("/continual_learning/")
+async def continual_learning():
+    try:
+        result = subprocess.run(
+            ["python", "continual.py"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return {"message": "모델 개선이 완료되었습니다!", "output": result.stdout}
+
+    except subprocess.CalledProcessError as e:
+        return {"message": "모델 개선 중 오류가 발생했습니다!", "error": e.stderr}
+
+    except Exception as e:
+        return {"message": "모델 개선 중 오류가 발생했습니다!", "error": str(e)}
 
 
 if __name__ == "__main__":

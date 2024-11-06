@@ -1,0 +1,13 @@
+service: "service.py:svc"
+description: "Audio Classifier Service with Continual Learning"
+
+include:
+  - "*.py"
+  - "*.pt"
+
+python:
+  packages:
+    - torch
+    - torchaudio
+    - bentoml
+    - sklearn

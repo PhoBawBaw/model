@@ -26,3 +26,8 @@ fastapi
 uvicorn
 python-multipart
 asyncpg
+bentoml==1.0.22
+python-dotenv
+psycopg2-binary
+pytest==6.2
+black==22.1
