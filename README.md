@@ -44,12 +44,12 @@ To deploy the model for inference, execute the following commands:
 
 2. Build the Docker image:
    ```bash
-   sudo docker build -f test.dockerfile -t predict_model .
+   sudo docker build -f seving.dockerfile -t predict_model .
    ```
 
 3. Run the Docker container:
    ```bash
-   sudo docker run -d -p 51213:1213 predict_model
+   sudo docker run -d -p 51213:1213 -v /baby:/baby predict_model
    ```
 
 ## Notes
@@ -61,6 +61,4 @@ To deploy the model for inference, execute the following commands:
 
 ## License
 
-TBD
-
----
+This repository is licensed under the [Apache-2.0 license](https://github.com/PhoBawBaw/model).
